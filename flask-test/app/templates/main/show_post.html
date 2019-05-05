@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+
+<body style="background-color:#EDEDED">
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table" align="center" style="background-color: white;width: 100%; ">
+            <tr style="height: 100px;">
+                <td style="border-bottom: #EDEDED solid 1px">
+                        <font size="6" color="#a52a2a">{{post.title}}</font>
+                    <font size="4" color="black">{{post.timestamp}}</font>
+                    {% if all %}
+                        <pre>{{post.body}}</pre>
+                    {% else %}
+                        <pre>{{post.body[:200]}}</pre>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <a href="{{url_for('main.post_comments',pid=post.id,uid = current_user.id)}}">发表评论</a>
+</div>
+            {%for comment in post.comments%}
+                <div class="alert alert-success" role="alert">
+                    <span>{{comment.body}}</span>
+                    <p align="right">{{comment.timestamp}}</p>
+                    <p align="right">{{comment.user.name}}</p>
+                </div>
+            {%endfor%}
+</body>
+
+{% endblock %}
+
+

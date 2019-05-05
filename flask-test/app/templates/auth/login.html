@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block page_content%}
+	<!--//banner-->
+	<!--about-->
+	<div class="about">
+		<div class="container">
+			<div align="center" ><h1>请您先登陆</h1> </div>
+			<div class="about-info">
+				<div class="col-md-6 about-grids">
+					<h3> </h3>
+					<img src="../../static/images/img2.jpg" alt=""/>
+				</div>
+				<div class="col-md-6 about-grids">
+					{% for m in get_flashed_messages() %}
+                    <div class="alert alert-danger" role="alert">{{m}}</div>
+                     {% endfor %}
+					{% import 'bootstrap/wtf.html' as wtf %}
+                    {{ wtf.quick_form(form) }}
+
+
+				 </div>
+			</div>
+
+
+    {% endblock %}

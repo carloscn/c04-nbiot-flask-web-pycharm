@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block page_content %}
+<div class="col-md-2">
+        <div class="list-group">
+            <a href="{{url_for('manager.manager_user')}}" class="list-group-item active">用户管理</a>
+            <a href="{{url_for('manager.manager_comments')}}" class="list-group-item">评论管理</a>
+            <a href="{{url_for('manager.manager_posts')}}" class="list-group-item">新闻管理</a>
+        </div>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+
+
+    <div class="col-md-9" ><p style="padding-top: 20px">
+<a href="{{url_for('manager.add_post')}}" type="button" class="btn btn-info" >发表公告</a></p>
+       {% for post in posts %}
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+            <tr style="height: 100px;">
+                <td style="border-bottom: #EDEDED solid 1px">
+                    <a href="{{url_for('main.show_post', id=post.id)}}">
+                        <font size="6" color="#a52a2a">{{post.title}}</font>
+                    </a>
+                    <font size="4" color="black">{{post.timestamp}}</font>
+                    {% if all %}
+                        <pre>{{post.body}}</pre>
+                    {% else %}
+                        <pre>{{post.body[:200]}}</pre>
+                    {% endif %}
+                    <a href="{{url_for('manager.edit_post',id=post.id)}}" type="button" class="btn btn-info">编辑公告 </a>
+    <a href="{{url_for('manager.delete_post',id=post.id)}}" type="button" class="btn btn-info">删除公告</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+
+
+
+</div>
+</div>
+{% endblock %}

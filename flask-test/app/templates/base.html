@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>About</title>
+<link href="../static/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../static/css/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="../static/css/component.css" rel="stylesheet" type="text/css"  />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Farming Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../static/js/jquery-1.11.1.min.js"></script>
+<script src="../static/js/modernizr.custom.js"></script>
+
+
+</head>
+
+
+<body class="cbp-spmenu-push">
+	<!--banner-->
+
+	<div class="banner abt-bnr">
+		<!--header-->
+		<div class="header">
+			<div class="container">
+
+				<!-- menu -->
+				<div class="top-nav">
+					<nav class="cbp-spmenu cbp-pmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+						<h3>Menu</h3>s
+						<a href="{{url_for('main.index',id=current_user.id)}}" class="active">首页</a>
+
+
+						 {% if  current_user.is_authenticated%}
+                        <li><a  href="{{url_for('device.devices',id=current_user.id)}}">信号灯设备</a></li>
+						<li><a  href="{{url_for('device.devices',id=current_user.id)}}">交通信号灯</a></li>
+						<li><a  href="{{url_for('main.user_info',id=current_user.id)}}">个人主页</a></li>
+						<li><a href="{{url_for('auth.logout')}}">注销</a></li>
+						<li><a  href="#">报警</a></li>
+                        <li><a  href="#">终端</a></li>
+						{%else%}
+
+						<li><a href="{{url_for('auth.login')}}">登录</a></li>
+						<li><a href="{{url_for('auth.register')}}">注册</a></li>
+
+						{%endif%}
+						{% if current_user.role_id==3%}
+						<a  href="{{url_for('manager.manager')}}">管理中心</a>
+						{% endif%}
+
+					</nav>
+					<div class="main buttonset">
+							<!-- Class "cbp-spmenu-open" gets applied to menu and "cbp-spmenu-push-toleft" or "cbp-spmenu-push-toright" to the body -->
+							<button id="showRightPush"><img src="../static/images/menu-icon.png" alt=""/></button>
+							<!--<span class="menu"></span>-->
+					</div>
+					<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+					<script src="../static/js/classie.js"></script>
+					<script>
+						var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+						showRightPush = document.getElementById( 'showRightPush' ),
+						body = document.body;
+
+						showRightPush.onclick = function() {
+							classie.toggle( this, 'active' );
+							classie.toggle( body, 'cbp-spmenu-push-toleft' );
+							classie.toggle( menuRight, 'cbp-spmenu-open' );
+							disableOther( 'showRightPush' );
+						};
+
+						function disableOther( button ) {
+							if( button !== 'showRightPush' ) {
+								classie.toggle( showRightPush, 'disabled' );
+							}
+						}
+					</script>
+					<!-- /script-for-menu -->
+				</div>
+				<!-- //menu -->
+			</div>
+		</div>
+		<!--//header-->
+	</div>
+	<!--//banner-->
+	<!--about-->
+
+    {% block page_content%}
+
+
+
+
+    {% endblock%}
+
+    <script src="../static/js/bootstrap.js"> </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div style="background-image: url(../../static/images/banner1.jpg);width: 100%;height:1080px;">
+<h2><small>尊敬的</small>{{current_user.name}}</h2>
+<p>您的验证链接已经过期，请点击
+    <a href="{{url_for('auth.resend_email')}}">这里</a>
+    重新发送！</p>
+<p>祝您生活愉快！</p>
+<h3>By&nbsp;&nbsp;EMBSKY.</h3>
+</div>
+{% endblock %}

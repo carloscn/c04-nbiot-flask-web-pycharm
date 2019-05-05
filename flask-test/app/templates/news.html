@@ -1,0 +1,34 @@
+<style>
+
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+</style>
+
+<table class="table" style="border: white solid 1px; width: 100%;background-color: white">
+            {% for blog in blogs %}
+            <tr style="height: 100px;">
+                <td style="border-bottom: #EDEDED solid 1px">
+                    <a href="{{url_for('blog.show_blog', id=blog.id)}}">
+                        <font size="6" color="#a52a2a">{{blog.title}}</font>
+                    </a>
+                    <a href="{{url_for('main.user_info', id=blog.user.id)}}">
+                        <font size="4" color="#000000">{{blog.user.name}}</font>
+                    </a>
+                    <font size="4" color="black">{{blog.time}}</font>
+                    {% if all %}
+                        <pre>{{blog.content}}</pre>
+                    {% else %}
+                        <pre>{{blog.content[:200]}}</pre>
+                    {% endif %}
+                    {% if current_user == blog.user %}
+                    <a class="btn btn-danger" href="{{url_for('blog.delete_blog', id=blog.id)}}">删除主题</a>
+                    <a class="btn btn-success" href="#">编辑主题</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>

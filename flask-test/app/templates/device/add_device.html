@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% block page_content %}
+<div style="background-image: url(../../static/images/banner1.jpg);width: 100%;height:800px;">
+<div class="container">
+<h3>添加设备</h3>
+
+    <div >
+        {% import 'bootstrap/wtf.html' as wtf %}
+        {{ wtf.quick_form(form) }}
+
+
+
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block page_content%}
+<meta http-equiv='refresh' content="1" url="sensor.sensor_data">
+<div class="main-container container clearfix">
+    <div class="content panel" id="content">
+        <div class="shebei-block">
+            <div hidden id="red_id">{{ mm[0] }}</div>
+            <div hidden id="yellow_id">{{ mm[1] }}</div>
+            <div hidden id="green_id">{{ mm[2] }}</div>
+            <table class="table table-bordered">
+                <tr>
+                    <th>设备ID</th>
+                    <th>设备名称</th>
+                    <th>设备描述</th>
+                    <th>创建时间</th>
+                    <th>红灯状态</th>
+                    <th>黄灯状态</th>
+                    <th>绿灯状态</th>
+                    <th>刷新</th>
+                </tr>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <tr>
+                        <td><p id="sensor_id_1">{{ all_sensors[0].id }}</p></td>
+                        <td><p id="sensor_name_1">{{ all_sensors[0].name }}</p></td>
+                        <td><p id="sensor_desc_1">{{ all_sensors[0].desc }}</p></td>
+                        <td>{{all_sensors[1].timestamp}}</td>
+
+                        <script language="javascript"type="text/javascript">
+                            var red_state;
+                            var yellow_state;
+                            var green_state;
+                            var mm0, mm1, mm2;
+                            var sensor_num;
+                            var sensor_name;
+                            var sensor_desc;
+                            red_state = "灭";
+                            yellow_state = "灭";
+                            green_state = "灭";
+                            sensor_num = document.getElementById('sensor_id_1').innerHTML;
+                            sensor_name = document.getElementById('sensor_name_1').innerHTML;
+                            sensor_desc = document.getElementById('sensor_desc_1').innerHTML;
+
+                            mm0 = document.getElementById('red_id').innerHTML;
+                            mm1 = document.getElementById('yellow_id').innerHTML;
+                            mm2 = document.getElementById('green_id').innerHTML;
+                            if (sensor_num == 3) {
+                                if(mm0 == 1) {
+                                    red_state = "亮";
+                                    yellow_state = "灭";
+                                    green_state = "灭";
+                                }
+                                if(mm1 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "亮";
+                                    green_state = "灭";
+                                }
+                                if(mm2 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "灭";
+                                    green_state = "亮";
+                                }
+                            }else if (sensor_num ==4){
+                                 if(mm0 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "灭";
+                                    green_state = "亮";
+                                }
+                                if(mm1 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "亮";
+                                    green_state = "灭";
+                                }
+                                if(mm2 == 1) {
+                                    red_state = "亮";
+                                    yellow_state = "灭";
+                                    green_state = "灭";
+                                }
+                            }
+                            document.write("<td>"+red_state+"</td>");
+                            document.write("<td>"+yellow_state+"</td>");
+                            document.write("<td>"+green_state+"</td>");
+                            <!--document.getElementById("rebn").click()-->
+                        </script>
+                        <td><a id="rebn1" class="btn btn-danger" href="{{url_for('sensor.sensor_data',id=all_sensors.id)}}"> <span >刷新</span></a></td>
+                    </tr>
+                    <tr>
+                        <td><p id="sensor_id_2">{{ all_sensors[1].id }}</p></td>
+                        <td><p id="sensor_name_2">{{ all_sensors[1].name }}</p></td>
+                        <td><p id="sensor_desc_2">{{ all_sensors[1].desc }}</p></td>
+                        <td>{{all_sensors[1].timestamp}}</td>
+
+                        <script language="javascript"type="text/javascript">
+                            var red_state;
+                            var yellow_state;
+                            var green_state;
+                            var mm0, mm1, mm2;
+                            var sensor_num;
+                            var sensor_name;
+                            var sensor_desc;
+                            red_state = "灭";
+                            yellow_state = "灭";
+                            green_state = "灭";
+                            sensor_num = document.getElementById('sensor_id_2').innerHTML;
+                            sensor_name = document.getElementById('sensor_name_2').innerHTML;
+                            sensor_desc = document.getElementById('sensor_desc_2').innerHTML;
+
+                            mm0 = document.getElementById('red_id').innerHTML;
+                            mm1 = document.getElementById('yellow_id').innerHTML;
+                            mm2 = document.getElementById('green_id').innerHTML;
+                            if (sensor_num == 5) {
+                                if(mm0 == 1) {
+                                    red_state = "亮";
+                                    yellow_state = "灭";
+                                    green_state = "灭";
+                                }
+                                if(mm1 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "亮";
+                                    green_state = "灭";
+                                }
+                                if(mm2 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "灭";
+                                    green_state = "亮";
+                                }
+                            }else if (sensor_num ==4){
+                                 if(mm0 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "灭";
+                                    green_state = "亮";
+                                }
+                                if(mm1 == 1) {
+                                    red_state = "灭";
+                                    yellow_state = "亮";
+                                    green_state = "灭";
+                                }
+                                if(mm2 == 1) {
+                                    red_state = "亮";
+                                    yellow_state = "灭";
+                                    green_state = "灭";
+                                }
+                            }
+                            document.write("<td>"+red_state+"</td>");
+                            document.write("<td>"+yellow_state+"</td>");
+                            document.write("<td>"+green_state+"</td>");
+                            <!--document.getElementById("rebn").click()-->
+                        </script>
+                        <td><a id="rebn2" class="btn btn-danger" href="{{url_for('sensor.sensor_data',id=all_sensors.id)}}"> <span >刷新</span></a></td>
+                    </tr>
+                </div>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

@@ -1,0 +1,32 @@
+<style>
+
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+</style>
+
+<table class="table" style="border: white solid 1px; width: 100%;background-color: white">
+            {% for post in posts %}
+            <tr style="height: 100px;">
+                <td style="border-bottom: #EDEDED solid 1px">
+
+                        <font size="6" color="#a52a2a">{{post.title}}</font>
+                    <font size="4" color="#a52a2a">管理员</font>
+
+                    <font size="4" color="black">{{post.time}}</font>
+                    {% if all %}
+                        <pre>{{post.body}}</pre>
+                    {% else %}
+                        <pre>{{post.body[:200]}}</pre>
+                    {% endif %}
+                    {% if current_user == post.user %}
+                    <a class="btn btn-danger" href="{{url_for('post.delete_blog', id=post.id)}}">删除</a>
+                    <a class="btn btn-success" href="{{url_for('post.edit_blog', id=post.id)}}">编辑</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>

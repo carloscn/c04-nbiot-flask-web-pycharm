@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+
+<body style="background-color:#EDEDED">
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="list-group">
+            <a href="{{url_for('manager.manager_user')}}" class="list-group-item  active">用户管理</a>
+            <a href="{{url_for('manager.manager_devices')}}" class="list-group-item">设备管理</a>
+            <a href="{{url_for('manager.manager_posts')}}" class="list-group-item">新闻管理</a>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <table class="table" align="center" style="background-color: white;width: 100%; ">
+
+
+        </table>
+    </div>
+</div>
+</body>
+
+{% endblock %}

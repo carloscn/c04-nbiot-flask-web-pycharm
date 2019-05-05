@@ -1,0 +1,121 @@
+{% extends 'base.html'%}
+{% block page_content%}
+
+<script type="text/javascript" src="../../static/js/FileSaver.js" charset="utf-8"></script>
+<script src="https://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<div class="main-container container clearfix">
+    <div class="content panel" id="content">
+        <div class="shebei-block">
+            <h2>【设备详情】
+
+                <a class="add" href="{{url_for('sensor.add_sensor',id=id)}}">添加传感器</a>
+
+            </h2>
+            <span ><a><img src="../../static/images/icon1.jpg"/></a>
+
+            <div>设备名称：{{dev.name}}</div>
+	        <div>设备编号：{{dev.id}}</div>
+            <div>设备描述：{{dev.desc}}</div>
+            <div>设备位置：{{dev.addr}}</div>
+            <div>创建时间：{{dev.timestamp}}</div>
+
+            </span>
+            <script src="../../static/js/echarts.min.js"></script>
+            <script src="../../static/js/jquery-3.3.1.min.js"></script>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>设备ID</th>
+                    <th>设备名称</th>
+                    <th>设备描述</th>
+                    <th>创建时间</th>
+                    <th>编辑设备信息</th>
+                    <th>设备数据</th>
+                    <th>删除设备</th>
+                </tr>
+
+                {% for all in all_sensors %}
+
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <tr>
+                        <td>{{ all.id }}</td>
+                        <td>{{ all.name }}</td>
+                        <td>{{ all.desc }}</td>
+                        <td><span class="flask-moment" data-refresh="0" style="display: none">{{all.timestamp}}</span></td>
+                        <script language="javascript"type="text/javascript">
+
+                            var red_state;
+                            var yellow_state;
+                            var green_state;
+                            red_state = "灭";
+                            yellow_state = "灭";
+                            green_state = "灭";
+                        </script>
+
+                        <td><a class="btn btn-warning" href="{{url_for('sensor.edit_sensor',id=all.id)}}"><span>编辑</span></a></td>
+                        <td><a class="btn btn-default" href="#"> <span href="#" >数据</span></a> </td>
+                        <td><a class="btn btn-danger" href="{{url_for('sensor.sensor_data',id=all.id)}}"> <span >详情</span></a></td>
+                    </tr>
+                </div>
+
+                {% endfor %}
+            </table>
+            <br>
+            <h2>【时间设定】
+
+            </h2>
+            <script language="javascript">
+                function AcceptData(num){
+                    document.getElementById("str").innerHTML=num;
+                }
+            </script>
+            <script language="javascript">
+
+
+                 function SetTimeMode(num){
+                    var fso;
+
+                    if (num == 1) {
+                        document.getElementById("str").innerHTML="设定为正常模式";
+                    }else{
+                        document.getElementById("str").innerHTML="设定为高峰期模式";
+                    }
+                    var blob = new Blob([num],{type: "text/plain;charset=utf-8"});
+                    //saveAs(blob, "文件测试.txt");
+                 }
+
+            </script>
+            <script>
+                $(document).ready(function(){
+                   $(".btn1").click(function(){
+                        $.ajax({url:"/dataFromAjaxSetNormalMode", data:{"mydata": "test data"},success:function(data){
+                            alert("设定为正常运行模式");
+                        }});
+                   });
+                   $(".btn2").click(function(){
+                        $.ajax({url:"/dataFromAjaxSetHighMode", data:{"mydata": "test data"},success:function(data){
+                            alert("设定为高峰运行模式");
+                        }});
+                   });
+                });
+            </script>
+            <br>
+            <br>
+            <form>默认切换时间:
+                <!--<a id="btn_default" class="btn btn-default" onclick="SetTimeMode('1')" value="1"> <span >设定</span></a>-->
+                <button class="btn1">设定</button>
+                <br>
+                <br>临时切换时间:
+                <button class="btn2">设定</button>
+                <!--<a id="btn_temp"  class="btn btn-default" onclick="SetTimeMode('2')" value="1"> <span >设定</span></a>-->
+                <p id="str"> </p>
+                <br>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

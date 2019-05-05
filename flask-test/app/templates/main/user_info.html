@@ -1,0 +1,89 @@
+{% extends 'base.html'%}
+{% block page_content%}
+<style type="text/css">
+#testDiv{  width: 100%;
+    height: auto;
+    word-wrap:break-word;
+    word-break:break-all;
+    overflow: hidden;  }
+</style>
+
+
+
+<<div class="about">>
+		<div class="container">
+			<div class="col-md-8 col-sm-12 col-xs-12">
+					<div align="center"><h2>系统公告</h2></div>
+	{% for post in posts %}
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+            <tr style="height: 100px;">
+                <td style="border-bottom: #EDEDED solid 1px">
+                    <a href="{{url_for('main.show_post', id=post.id)}}">
+                        <font size="6" color="#a52a2a">{{post.title}}</font>
+                    </a>
+                    <font size="4" color="black">{{post.timestamp}}</font>
+                    {% if all %}
+                        <pre>{{post.body}}</pre>
+                    {% else %}
+                        <pre>{{post.body[:200]}}</pre>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+
+
+
+
+			</div>
+			<div class="col-md-4 col-sm-12 col-xs-12"  >
+			<table class="table" align="center" style="background-color: white;width: 100%; ">
+            <tr>
+                <td>
+                    <a href="{{url_for('main.edit_user_info')}}" type="button" class="btn btn-danger">编辑资料</a>
+                    <a href="#" type="button" class="btn btn-info">绑定手机</a>
+                </td>
+            </tr>
+            </table>
+			<div style="background-color: white;width: 100%; ">
+			<p id="testDiv"><b>API-KEY：{{user.api}}</b></p>
+            <p><b>我的昵称：{{user.name}}</b></p>
+            <p><b>我的手机：{{user.teltephone}}</b></p>
+            <p><b>个人签名：{{user.about_me}}</b></p>
+            <p><b>我的位置：{{user.location}}</b></p>
+            <p><b>我的角色：{{user.role.name}}</b></p>
+            <p><b>我的邮箱：{{user.email}}</b></p>
+            <p><b>账号状态：
+				{% if user.confirm%}
+					已激活
+				{% else%}
+					未激活
+				{% endif %}
+			</b></p>
+            <p><b>企业用户：
+				{% if user.isEnterprise%}
+					是
+				{% else %}
+					否
+				{% endif %}
+			</b></p>
+            <p><b>注册时间：{{user.r_time}}</b></p>
+            <p><b>最后访问时间：{{user.a_time}}</b></p>
+
+
+
+
+			</div>
+			</div>
+
+
+</div>
+		</div>
+{% endblock %}

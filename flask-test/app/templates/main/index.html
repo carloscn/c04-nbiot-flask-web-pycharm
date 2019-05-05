@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>首页</title>
+<link href="../../static/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../../static/css/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="../../static/css/component.css" rel="stylesheet" type="text/css"  />
+
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Farming Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../../static/js/jquery-1.11.1.min.js"></script>
+<script src="../../static/js/modernizr.custom.js"></script>
+<!-- //js -->
+</head>
+
+
+<body class="cbp-spmenu-push">
+	<!--banner-->
+	<div class="banner">
+		<!--header-->
+		<div class="header">
+			<div class="container">
+
+				<div class="top-nav">
+					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+						<h3>Menu</h3>
+						<a href="{{url_for('main.index',id=current_user.id)}}" class="active">首页</a>
+
+						 {% if  current_user.is_authenticated %}
+                        <li><a  href="{{url_for('device.devices',id=current_user.id)}}">信号灯设备</a></li>
+                        <li><a  href="#">报警</a></li>
+                        <li><a  href="#">终端</a></li>
+                        <li><a  href="#">社区</a></li>
+						<li><a  href="{{url_for('main.user_info',id=current_user.id)}}">个人主页</a></li>
+						<li><a href="{{url_for('auth.logout')}}">注销</a></li>
+						{%else%}
+						<li><a href="{{url_for('auth.login')}}">登录</a></li>
+						<li><a href="{{url_for('auth.register')}}">注册</a></li>
+						{%endif%}
+						{% if current_user.is_admin%}
+						<a  href="{{url_for('manager.manager')}}">管理中心</a>
+						{% endif%}
+					</nav>
+					<div class="main buttonset" style="border: solid 2px black;" >
+
+							<button id="showRightPush"><img src="../../static/images/menu-icon.png" alt=""/></button>
+
+					</div>
+
+					<script src="../../static/js/classie.js"></script>
+					<script>
+						var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+						showRightPush = document.getElementById( 'showRightPush' ),
+						body = document.body;
+
+						showRightPush.onclick = function() {
+							classie.toggle( this, 'active' );
+							classie.toggle( body, 'cbp-spmenu-push-toleft' );
+							classie.toggle( menuRight, 'cbp-spmenu-open' );
+							disableOther( 'showRightPush' );
+						};
+
+						function disableOther( button ) {
+							if( button !== 'showRightPush' ) {
+								classie.toggle( showRightPush, 'disabled' );
+							}
+						}
+					</script>
+
+				</div>
+			</div>
+		</div>
+
+		<!--//header-->
+		<div class="banner-text">
+			<h1>智能城市交通信号云平台，欢迎您的到来。</h1>
+			<p>平台围绕现阶段城市车辆较多，实时监测信号灯，实时抓拍车辆信息，基于无线通信、物联网等科技手段，实时监测控制信号灯。
+			可以实时根据路段情况调整时间，做出最优判断,然后调整路面情况。</p>
+		</div>
+	</div>
+
+	<!--//banner-->
+	<div class="hm-about">
+		<div class="container">
+			<div class="col-md-5 hm-about-left">
+				<img src="../../static/images/img1.jpg" alt="" style="20%;height: 200px">
+			</div>
+			<div class="col-md-7 hm-about-left">
+				<h5>智能城市交通信号云平台</h5>
+				<p>智能城市交通信号云平台，实时监测各路段车流量进行拥堵统计，收集数据反馈给中心,及时作出调整。
+					现阶段车辆较多，但是路段分部情况不同，智能信号灯实时监测路段情况，做出最优红绿灯调控方案，
+					让路面尽可能通畅，方便我们的生活。
+					</p>
+				<a class="btn btn-1 btn-1d" href="#"> Read More </a>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!--banner-bottom-->
+	<div class="banner-bottom">
+		<div class="container">
+			<h3 class="title">我们为什么要用智能城市交通信号云平台</h3>
+			<p class="title"></p>
+
+		</div>
+	</div>
+	<!--//banner-bottom-->
+	<!--slid-->
+	<div class="slid">
+		<div class="container">
+			<h3 class="title">Service Overview</h3>
+			<div class="slid-row">
+				<div class="col-md-4 slid-grids">
+					<h5>实时连接</h5>
+					<h6>适配多种主流物联网传输协议，兼容各种网络环境</h6>
+>					<a class="btn btn-1 btn-1d" href="#"> Read More </a>
+				</div>
+				<div class="col-md-4 slid-grids">
+					<h5>能力强大</h5>
+					<h6>实时根据路口情况作出调整，方便民众。</h6>
+					<a class="btn btn-1 btn-1d" href="#"> Read More </a>
+				</div>
+				<div class="col-md-4 slid-grids">
+					<h5>合作共赢</h5>
+					<h6>方便民众，和谐社会，避免路面问题。</h6>
+					<a class="btn btn-1 btn-1d" href="#"> Read More </a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--//slid-->
+
+	<!--services-->
+	<div class="services" id="services">
+		<div class="container">
+			<h3 class="title">系统特点及优势</h3>
+			<p class="title">添加设备及传感器，数据上传及下载。</p>
+			<div class="service-grids">
+				<div class="col-md-4 srvc-grids-info">
+					<div class="srvc-img">
+						<img src="../../static/images/icon2.png" alt="">
+					</div>
+					<h5>硬件可靠</h5>
+					<p>硬件可靠性高, IP66以上的前端设备防护等级, 防尘、防水, 安装在户外,适应恶劣环境。</p>
+				</div>
+				<div class="col-md-4 srvc-grids-info">
+					<div class="srvc-img">
+						<img src="../../static/images/icon3.png" alt="">
+					</div>
+					<h5>安全便捷</h5>
+					<p>软件系统功能完善,界面友好, 操作便捷。集成的视频监控功能,实现便捷的远程可视化管理。 </p>
+				</div>
+				<div class="col-md-4 srvc-grids-info">
+					<div class="srvc-img">
+						<img src="../../static/images/icon4.png" alt="">
+					</div>
+					<h5>速度快</h5>
+					<p>速度快，实时收集路面问题，做出调整方案。</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--//services-->
+	<!--slid-->
+	<div class="testi">
+		<div class="container">
+			<h3 class="title">What celebrities have said</h3>
+
+			<!-- banner-text Slider starts Here -->
+			<script src="../../static/js/responsiveslides.min.js"></script>
+			<script>
+				// You can also use "$(window).load(function() {"
+					$(function () {
+
+						$("#slider3").responsiveSlides({
+						auto: true,
+						pager:true,
+						nav:false,
+						speed: 500,
+						namespace: "callbacks",
+						before: function () {
+						$('.events').append("<li>before event fired.</li>");
+						},
+						after: function () {
+							$('.events').append("<li>after event fired.</li>");
+						}
+					});
+				});
+			</script>
+			<!--//End-slider-script -->
+			<div  id="top" class="callbacks_container">
+				<ul class="rslides" id="slider3">
+					<li>
+						<p>Therefore, enterprises should no longer be limited to the technology itself,</p>
+							<p> but should focus on the change of competitive nature</p>
+						<h4>Michael Porter</h4>
+					</li>
+					<li>
+						<p>Being smart is a basic condition, but it doesn't guarantee your success, </p>
+							<p>and geeks need to be more prepared</p>
+						<h4>Robin Li </h4>
+					</li>
+					<li>
+						<p>The Internet is changing the way humans live. </p>
+						<h4> Bill Gates</h4>
+					</li>
+				</ul>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+    <script src="../../static/js/bootstrap.js"> </script>
+</body>
+</html>

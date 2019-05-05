@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<div class="container">
+    【我的全部设备】
+
+    <a href="{{url_for('device.add_device',id=id)}}" type="button" class="btn btn-warning">添加设备</a>
+    <br>
+    <br>
+    <div class="container">
+        {% for dev in all_device %}
+
+        <span class="col-md-6 col-sm-12 col-xs-12"><a ><img src="../../static/images/shebei.jpg" /></a>
+            <div>设备名称：<a href="{{url_for('device.device_id',id=dev.id)}}">{{dev.name}}</a></div>
+	        <div>设备编号：{{dev.id}}</div>
+            <div>设备描述：{{dev.desc}}</div>
+            <div>设备位置：{{dev.addr}}</div>
+            <div>创建时间：{{dev.timestamp}}</div>
+            <a class="btn btn-danger" href="{{url_for('device.delete_device',id=dev.id)}}">删除</a>
+            <a class="btn btn-warning" href="{{url_for('device.modify_device',id=dev.id)}}">设置</a>
+            <a class="btn btn-info" href="{{url_for('device.device_id',id=dev.id)}}">传感器</a>
+            </span>
+
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

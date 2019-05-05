@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% block page_content%}
+<p style="padding-top: 20px"></p>
+ <div class="row">
+
+
+        <div class="col-md-offset-0 col-md-12" style="height:100%;background-color: whitesmoke;margin-top: -20px">
+
+            <table class="table table-striped" style="border: 1px solid #dbdbdb;margin-top: 5px">
+                <thead>
+                   <td><b>设备名</b></td>
+
+                   <td><b>设备负责人</b></td>
+
+
+                    <td><b>设备负责人邮箱</b></td>
+
+                    <td><b>删除设备</b></td>
+                </thead>
+                {% for device in devices %}
+                <tr>
+                    <td>{{device.name}}</td>
+                    {% for user in users %}
+                    {% if user.id==device.user_id%}
+                    <td> {{user.name}}</td>
+                    <td>
+                        <a href="#" class="label label-success">{{user.email}}</a>
+                    </td>
+                    {% endif%}
+                    {% endfor%}
+                    <td>
+                        <a href="{{url_for('manager.delete_device',id=device.id)}}" class="label label-danger">删除</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

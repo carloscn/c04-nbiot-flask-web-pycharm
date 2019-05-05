@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block page_content %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{{ wtf.quick_form(form) }}
+<p style="padding-top: 20px"></p>
+ <div class="row">
+
+
+        <div class="col-md-offset-0 col-md-12" style="height:100%;background-color: whitesmoke;margin-top: -20px">
+
+            <table class="table table-striped" style="border: 1px solid #dbdbdb;margin-top: 5px">
+                <thead>
+                   <td><b>姓名</b></td>
+
+                   <td><b>角色</b></td>
+
+
+                    <td><b>用户详情</b></td>
+                    <td><b>编辑用户</b></td>
+                    <td><b>删除用户</b></td>
+                </thead>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.name}}</td>
+                    {% if user.role.id==3%}
+                     <td>admin</td>
+                    {% elif user.role.id==2%}
+                    <td>moderator</td>
+                    {% else%}
+                    <td>user</td>
+                    {%endif%}
+
+                    {% if user.role.id !=3%}
+                    <td>
+                        <a href="#" class="label label-success">详情</a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('manager.edit_user',id=user.id)}}" class="label label-info">编辑</a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('manager.delete_user',id=user.id)}}" class="label label-danger">删除</a>
+                    </td>
+                    {%endif%}
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
